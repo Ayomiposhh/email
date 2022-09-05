@@ -9,7 +9,7 @@ from django.core import validators
 class RegForm(UserCreationForm):
     username = forms.CharField(label='Username :', widget=forms.TextInput(
         attrs={'class': 'input-text', 'placeholder': 'Enter Username'}))
-    email = forms.EmailField(label='Email :', widget=forms.EmailInput(attrs={'class': 'input-text', 'placeholder': 'Enter Email'}))
+    email = forms.EmailField(label='Email :', widget=forms.TextInput(attrs={'class': 'input-text', 'placeholder': 'Enter Email'}))
     first_name = forms.CharField(required=False, widget=forms.TextInput(
         attrs={'class': 'input-text', 'placeholder': 'Enter Firstname'}))
     last_name = forms.CharField(required=False, widget=forms.TextInput(

@@ -15,9 +15,7 @@ from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
 
-
-
-
+      
 def register(request):
   if request.method == 'POST':
     register_form=RegForm(request.POST, request.FILES)
@@ -27,9 +25,7 @@ def register(request):
       user.profile.first_name = register_form.cleaned_data.get('first_name')
       user.profile.last_name = register_form.cleaned_data.get('last_name')
       user.profile.email = register_form.cleaned_data.get('email')
-      user.profile.phone = register_form.cleaned_data.get('phone')
-      
-  # user can't login until link confirmed
+      # user can't login until link confirmed
       user.is_active = False
       user.save()
       current_site = get_current_site(request)
@@ -44,16 +40,13 @@ def register(request):
         'token': account_activation_token.make_token(user),
       })
       user.email_user(subject, message)
-      return redirect('activation_sent')
+      return redirect('emailapp:activation_sent')
 
       # messages.success(request, 'User Registered')
   else:
        register_form=RegForm()
   return render(request,'emailapp/register.html',{'reg': register_form})
 
-
-def sent(request):
-  return render(request,'emailapp/activation_sent.html')
 
 
 def activate(request, uidb64, token):
@@ -73,8 +66,10 @@ def activate(request, uidb64, token):
         return redirect('emailapp:login')
     else:
         return render(request, 'emailapp/account_invalid.html')
-      
-      
+
+def sent(request):
+  return render(request,'emailapp/activation_sent.html')
+
       
 def login_view(request):
     if request.method == 'POST':

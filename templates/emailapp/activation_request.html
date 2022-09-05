@@ -1,8 +1,8 @@
 {% autoescape off %}
-    From Galaxt Teams,
+    From Ayomiposi,
     {{ user.first_name }} {{ user.last_name }}
     Hi {{ user.username }},
-
+    its working o  
     Please click the following link to confirm your registration:
 
     http://{{ domain }}{% url 'emailapp:activate' uidb64=uid token=token %}
